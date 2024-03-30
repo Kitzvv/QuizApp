@@ -2,18 +2,11 @@ import styled from "styled-components";
 import Header from "./Header";
 
 import AppContainer from "./AppContainer";
+import AppBackground from "./AppBackground";
 
 const StyledAppLayout = styled.div`
   height: 100vh;
   background-color: #eef2ff;
-`;
-
-const StyledBlueBackground = styled.div`
-  background-color: #c7d2fe;
-  position: absolute;
-  bottom: 0;
-  height: 20rem;
-  width: 100%;
 `;
 
 const StyledAppContainer = styled.div`
@@ -29,7 +22,7 @@ export default function AppLayout() {
       <StyledAppContainer>
         <AppContainer />
       </StyledAppContainer>
-      <StyledBlueBackground />
+      <AppBackground />
     </StyledAppLayout>
   );
 }
