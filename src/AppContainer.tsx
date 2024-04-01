@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledAppContainer = styled.div`
@@ -8,19 +9,10 @@ const StyledAppContainer = styled.div`
   z-index: 50;
 `;
 
-const StyledH1 = styled.h1`
-  font-size: 3.2rem;
-  text-align: center;
-  margin-top: 8rem;
-  font-weight: 400;
-`;
-
-function AppContainer() {
+export default function AppContainer() {
   return (
     <StyledAppContainer>
-      <StyledH1>Welcome To Quizzies</StyledH1>
+      <Outlet />
     </StyledAppContainer>
   );
 }
-
-export default AppContainer;

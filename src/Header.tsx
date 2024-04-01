@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import { FaLongArrowAltLeft } from "react-icons/fa";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { IconContext } from "react-icons";
+import { useNavigate } from "react-router-dom";
 
 const StyledHeader = styled.div`
   display: flex;
@@ -7,11 +11,16 @@ const StyledHeader = styled.div`
 `;
 
 const StyledButton = styled.button`
-  background-color: #fff;
-  border: 1px solid #000;
-  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: #ffffff;
+  border: 1px solid #71717a;
+  padding: 1rem 2rem;
   font-size: 1.6rem;
-  border-radius: 0.5rem;
+  border-radius: 10rem;
+  font-weight: 300;
 
   cursor: pointer;
 `;
@@ -22,11 +31,23 @@ const StyledH1 = styled.h1`
 `;
 
 function Header() {
+  const navigate = useNavigate();
+
   return (
     <StyledHeader>
-      <StyledButton>goback</StyledButton>
+      <StyledButton onClick={() => navigate(-1)}>
+        <IconContext.Provider value={{ color: "#71717a", size: "2rem" }}>
+          <FaLongArrowAltLeft />
+        </IconContext.Provider>
+        <span>Back</span>
+      </StyledButton>
       <StyledH1>Quizzies</StyledH1>
-      <StyledButton>goforward</StyledButton>
+      <StyledButton>
+        <span>Forward</span>
+        <IconContext.Provider value={{ color: "#71717a", size: "2rem" }}>
+          <FaLongArrowAltRight />
+        </IconContext.Provider>
+      </StyledButton>
     </StyledHeader>
   );
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Header from "./Header";
-
 import AppContainer from "./AppContainer";
+
 import AppBackground from "./AppBackground";
 
 const StyledAppLayout = styled.div`
