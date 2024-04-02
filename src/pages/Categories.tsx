@@ -25,7 +25,6 @@ const FlexContainer = styled.div`
 `;
 
 const StyledContainer = styled.div`
-  border: 2px solid #a3a3a3;
   border-radius: 2rem;
 
   background-color: #fafafa;
@@ -46,10 +45,10 @@ const CategoryContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-
+  gap: 0.1rem;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+
   cursor: pointer;
 `;
 
@@ -66,42 +65,42 @@ function Categories() {
       <FlexContainer>
         <StyledContainer>
           <CategoryContainer>
-            <IconContext.Provider value={{ color: "#71717a", size: "7rem" }}>
+            <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
               <PiFilmSlateThin />
             </IconContext.Provider>
             <StyledCategoryName>Movies</StyledCategoryName>
           </CategoryContainer>
 
           <CategoryContainer>
-            <IconContext.Provider value={{ color: "#71717a", size: "7rem" }}>
+            <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
               <CiMusicNote1 />
             </IconContext.Provider>
             <StyledCategoryName>Music</StyledCategoryName>
           </CategoryContainer>
 
           <CategoryContainer>
-            <IconContext.Provider value={{ color: "#71717a", size: "7rem" }}>
+            <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
               <LuBook />
             </IconContext.Provider>
             <StyledCategoryName>Books</StyledCategoryName>
           </CategoryContainer>
 
           <CategoryContainer>
-            <IconContext.Provider value={{ color: "#71717a", size: "7rem" }}>
+            <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
               <IoGameControllerOutline />
             </IconContext.Provider>
             <StyledCategoryName>Games</StyledCategoryName>
           </CategoryContainer>
 
           <CategoryContainer>
-            <IconContext.Provider value={{ color: "#71717a", size: "7rem" }}>
+            <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
               <IoIosGlobe />
             </IconContext.Provider>
             <StyledCategoryName>Geography</StyledCategoryName>
           </CategoryContainer>
 
           <CategoryContainer>
-            <IconContext.Provider value={{ color: "#71717a", size: "7rem" }}>
+            <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
               <IoLeafOutline />
             </IconContext.Provider>
             <StyledCategoryName>Science and Nature</StyledCategoryName>
