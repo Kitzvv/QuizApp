@@ -1,5 +1,8 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { fetchQuestions } from "../redux/slices/quizSlice";
 
 const LevelContainer = styled.div`
   display: flex;
@@ -71,6 +74,12 @@ const StyledDifficulty = styled.p`
 
 function ChooseDificulty() {
   const { category } = useParams<{ category: string }>();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchQuestions(category));
+  }, [category, dispatch]);
 
   return (
     <StyledContainer>
