@@ -3,7 +3,8 @@ import GlobalStyles from "./GlobalStyles";
 import Homepage from "./pages/Homepage";
 import AppLayout from "./AppLayout";
 import Categories from "./pages/Categories";
-import ChooseLevel from "./pages/ChooseLevel";
+
+import ChooseDificulty from "./pages/ChooseDifficulty";
 
 function App() {
   return (
@@ -13,7 +14,10 @@ function App() {
         <Route element={<AppLayout />}>
           <Route index element={<Homepage />}></Route>
           <Route path="categories" element={<Categories />}></Route>
-          <Route path="level" element={<ChooseLevel />}></Route>
+          <Route
+            path="difficulty/:category"
+            element={<ChooseDificulty />}
+          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>

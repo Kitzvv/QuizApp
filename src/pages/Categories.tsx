@@ -5,6 +5,7 @@ import { LuBook } from "react-icons/lu";
 import { IconContext } from "react-icons";
 import { IoGameControllerOutline, IoLeafOutline } from "react-icons/io5";
 import { IoIosGlobe } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const StyledH1 = styled.h1`
   color: #71717a;
@@ -27,7 +28,6 @@ const FlexContainer = styled.div`
 const StyledContainer = styled.div`
   border-radius: 2rem;
 
-  background-color: #fafafa;
   height: 50rem;
   width: 90%;
 
@@ -59,47 +59,55 @@ const StyledCategoryName = styled.p`
 `;
 
 function Categories() {
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (category: string) => {
+    navigate(`/difficulty/${category}`);
+  };
+
   return (
     <>
       <StyledH1>Categories</StyledH1>
       <FlexContainer>
         <StyledContainer>
-          <CategoryContainer>
+          <CategoryContainer onClick={() => handleCategoryClick("movies")}>
             <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
               <PiFilmSlateThin />
             </IconContext.Provider>
             <StyledCategoryName>Movies</StyledCategoryName>
           </CategoryContainer>
 
-          <CategoryContainer>
+          <CategoryContainer onClick={() => handleCategoryClick("music")}>
             <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
               <CiMusicNote1 />
             </IconContext.Provider>
             <StyledCategoryName>Music</StyledCategoryName>
           </CategoryContainer>
 
-          <CategoryContainer>
+          <CategoryContainer onClick={() => handleCategoryClick("books")}>
             <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
               <LuBook />
             </IconContext.Provider>
             <StyledCategoryName>Books</StyledCategoryName>
           </CategoryContainer>
 
-          <CategoryContainer>
+          <CategoryContainer onClick={() => handleCategoryClick("games")}>
             <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
               <IoGameControllerOutline />
             </IconContext.Provider>
             <StyledCategoryName>Games</StyledCategoryName>
           </CategoryContainer>
 
-          <CategoryContainer>
+          <CategoryContainer onClick={() => handleCategoryClick("geography")}>
             <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
               <IoIosGlobe />
             </IconContext.Provider>
             <StyledCategoryName>Geography</StyledCategoryName>
           </CategoryContainer>
 
-          <CategoryContainer>
+          <CategoryContainer
+            onClick={() => handleCategoryClick("science-and-nature")}
+          >
             <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
               <IoLeafOutline />
             </IconContext.Provider>
