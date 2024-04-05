@@ -1,8 +1,5 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { fetchQuestions } from "../redux/slices/quizSlice";
 
 const LevelContainer = styled.div`
   display: flex;
@@ -72,14 +69,13 @@ const StyledDifficulty = styled.p`
   color: #71717a;
 `;
 
-function ChooseDificulty() {
+function ChooseDifficulty() {
   const { category } = useParams<{ category: string }>();
+  const navigate = useNavigate();
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchQuestions(category));
-  }, [category, dispatch]);
+  const handleLevelClick = (level: string) => {
+    navigate(`/quiz/${category}/${level}`);
+  };
 
   return (
     <StyledContainer>
@@ -87,15 +83,15 @@ function ChooseDificulty() {
       <StyledLine />
       <StyledCategoryName>{category?.replace(/-/g, " ")}</StyledCategoryName>
       <LevelContainer>
-        <Level>
+        <Level onClick={() => handleLevelClick("easy")}>
           <StyledEmoji>🥉</StyledEmoji>
           <StyledDifficulty>Easy</StyledDifficulty>
         </Level>
-        <Level>
+        <Level onClick={() => handleLevelClick("medium")}>
           <StyledEmoji>🥈</StyledEmoji>
           <StyledDifficulty>Medium</StyledDifficulty>
         </Level>
-        <Level>
+        <Level onClick={() => handleLevelClick("hard")}>
           <StyledEmoji>🥇</StyledEmoji>
           <StyledDifficulty>Hard</StyledDifficulty>
         </Level>
@@ -104,4 +100,4 @@ function ChooseDificulty() {
   );
 }
 
-export default ChooseDificulty;
+export default ChooseDifficulty;

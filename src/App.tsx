@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GlobalStyles from "./ui/GlobalStyles";
-import Homepage from "./pages/Homepage";
 import AppLayout from "./ui/AppLayout";
-import Categories from "./pages/Categories";
 
-import ChooseDificulty from "./pages/ChooseDifficulty";
+import Homepage from "./pages/Homepage";
+import Categories from "./pages/Categories";
+import ChooseDifficulty from "./pages/ChooseDifficulty";
+import Game from "./pages/Game";
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
           <Route index element={<Homepage />}></Route>
           <Route path="categories" element={<Categories />}></Route>
           <Route
-            path="difficulty/:category"
-            element={<ChooseDificulty />}
+            path="choose-difficulty/:category"
+            element={<ChooseDifficulty />}
           ></Route>
+          <Route path="quiz/:category/:difficulty" element={<Game />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

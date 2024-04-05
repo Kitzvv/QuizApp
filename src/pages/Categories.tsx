@@ -62,7 +62,7 @@ function Categories() {
   const navigate = useNavigate();
 
   const handleCategoryClick = (category: string) => {
-    navigate(`/difficulty/${category}`);
+    navigate(`/choose-difficulty/${category}`);
   };
 
   return (
