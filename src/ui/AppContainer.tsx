@@ -16,7 +16,8 @@ export default function AppContainer() {
 
   return (
     <StyledAppContainer>
-      {!location.pathname.includes("quiz") && <Button />}
+      {!location.pathname.includes("quiz") &&
+        !location.pathname.includes("finish") && <Button />}
       <Outlet />
     </StyledAppContainer>
   );

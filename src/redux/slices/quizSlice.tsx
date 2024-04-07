@@ -67,6 +67,13 @@ const quizSlice = createSlice({
         state.isAnswerCorrect = false;
       }
     },
+    nextQuestion: (state) => {
+      state.currentQuestion += 1;
+      state.isAnswerCorrect = null;
+    },
+    finishGame: (state) => {
+      Object.assign(state, initialState);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -96,6 +103,6 @@ const quizSlice = createSlice({
   },
 });
 
-export const { submitQuestion } = quizSlice.actions;
+export const { submitQuestion, nextQuestion, finishGame } = quizSlice.actions;
 
 export default quizSlice.reducer;

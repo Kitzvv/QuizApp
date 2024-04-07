@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage";
 import Categories from "./pages/Categories";
 import ChooseDifficulty from "./pages/ChooseDifficulty";
 import Game from "./pages/Game";
+import Finish from "./pages/Finish";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             element={<ChooseDifficulty />}
           ></Route>
           <Route path="quiz/:category/:difficulty" element={<Game />}></Route>
+          <Route path="finish" element={<Finish />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import { fetchData, submitQuestion } from "../redux/slices/quizSlice";
+import {
+  fetchData,
+  nextQuestion,
+  submitQuestion,
+} from "../redux/slices/quizSlice";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../ui/Spinner";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -82,8 +86,6 @@ const StyledNextButton = styled.button`
   position: absolute;
   bottom: 2rem;
   right: 3rem;
-
-  cursor: pointer;
 `;
 
 function Game() {
@@ -97,6 +99,7 @@ function Game() {
   const { category } = useParams<{ category: string }>();
   const { difficulty } = useParams<{ difficulty: string }>();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const questions = useSelector((state: State) => state.Quiz.questions);
   const isLoading = useSelector((state: State) => state.Quiz.isLoading);
@@ -117,6 +120,15 @@ function Game() {
     setIsSubmited(true);
     dispatch(submitQuestion(answer));
   }
+  function handleNextClick() {
+    setIsSubmited(false);
+
+    if (currentQuestion === 9) {
+      navigate("/finish");
+    }
+
+    dispatch(nextQuestion());
+  }
 
   if (isLoading || !questions || !answers || !answers[0]) {
     return (
@@ -127,7 +139,9 @@ function Game() {
   }
   return (
     <StyledGameContainer>
-      <StyledQuestion dangerouslySetInnerHTML={{ __html: questions[0] }} />
+      <StyledQuestion
+        dangerouslySetInnerHTML={{ __html: questions[currentQuestion] }}
+      />
       <StyledPoints>Points: {score}</StyledPoints>
       <StyledAnswersContainer>
         {answers[currentQuestion].map((answer, index) => (
@@ -147,7 +161,7 @@ function Game() {
         ))}
       </StyledAnswersContainer>
       {isSubbmited == true && (
-        <StyledNextButton>
+        <StyledNextButton onClick={() => handleNextClick()}>
           Next
           <IconContext.Provider value={{ color: "#71717a", size: "2rem" }}>
             <FaLongArrowAltRight />
