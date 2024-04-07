@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import { fetchData } from "../redux/slices/quizSlice";
-import { useEffect } from "react";
+import { fetchData, submitQuestion } from "../redux/slices/quizSlice";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../ui/Spinner";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
 const StyledGameContainer = styled.div`
   display: flex;
@@ -13,6 +15,7 @@ const StyledGameContainer = styled.div`
 
   height: 100%;
   width: 100%;
+  position: relative;
 `;
 
 const StyledQuestion = styled.h1`
@@ -31,28 +34,56 @@ const StyledPoints = styled.p`
   margin-top: -1rem;
 `;
 
-const StyledAnswers = styled.p`
+const StyledAnswersContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
+const StyledAnswers = styled.button`
+  background-color: #f9fafb;
   height: 5rem;
   width: 45rem;
   border: 1px solid #d4d4d4;
   border-radius: 1rem;
 
+  color: #18181b;
+  font-weight: 500;
   font-size: 1.6rem;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: #f9fafb;
 
   cursor: pointer;
 
-  &.goodAnswer {
+  &.static {
+    background-color: #f9fafb;
+  }
+
+  &.goodanswer {
     background-color: #34d399;
+    transition: background-color 0.3s;
   }
-  &.wrongAnswer {
+  &.wronganswer {
     background-color: #f87171;
+    transition: background-color 0.3s;
   }
+`;
+
+const StyledNextButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: #ffffff;
+  border: 1px solid #71717a;
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  border-radius: 10rem;
+  font-weight: 300;
+
+  position: absolute;
+  bottom: 2rem;
+  right: 3rem;
+
+  cursor: pointer;
 `;
 
 function Game() {
@@ -60,6 +91,9 @@ function Game() {
     questions: any;
     isLoading: boolean;
   }
+
+  const [isSubbmited, setIsSubmited] = useState(false);
+
   const { category } = useParams<{ category: string }>();
   const { difficulty } = useParams<{ difficulty: string }>();
   const dispatch = useDispatch();
@@ -67,10 +101,22 @@ function Game() {
   const questions = useSelector((state: State) => state.Quiz.questions);
   const isLoading = useSelector((state: State) => state.Quiz.isLoading);
   const answers = useSelector((state: State) => state.Quiz.answers);
+  const currentQuestion = useSelector(
+    (state: State) => state.Quiz.currentQuestion
+  );
+  const isAnswerCorrect = useSelector(
+    (state: State) => state.Quiz.isAnswerCorrect
+  );
+  const score = useSelector((state: State) => state.Quiz.score);
 
   useEffect(() => {
     dispatch(fetchData({ category, difficulty }));
   }, [category, difficulty, dispatch]);
+
+  function handleAnswerClick(answer: object) {
+    setIsSubmited(true);
+    dispatch(submitQuestion(answer));
+  }
 
   if (isLoading || !questions || !answers || !answers[0]) {
     return (
@@ -82,13 +128,32 @@ function Game() {
   return (
     <StyledGameContainer>
       <StyledQuestion dangerouslySetInnerHTML={{ __html: questions[0] }} />
-      <StyledPoints>Points: 0</StyledPoints>
-      {answers[0].map((answer, index) => (
-        <StyledAnswers
-          key={index}
-          dangerouslySetInnerHTML={{ __html: answer.text }}
-        />
-      ))}
+      <StyledPoints>Points: {score}</StyledPoints>
+      <StyledAnswersContainer>
+        {answers[currentQuestion].map((answer, index) => (
+          <StyledAnswers
+            onClick={() => handleAnswerClick(answer)}
+            disabled={isSubbmited}
+            key={index}
+            className={`${
+              !isSubbmited
+                ? "static"
+                : isSubbmited && answer.correct === true
+                ? "goodanswer"
+                : "wronganswer"
+            }`}
+            dangerouslySetInnerHTML={{ __html: answer.text }}
+          />
+        ))}
+      </StyledAnswersContainer>
+      {isSubbmited == true && (
+        <StyledNextButton>
+          Next
+          <IconContext.Provider value={{ color: "#71717a", size: "2rem" }}>
+            <FaLongArrowAltRight />
+          </IconContext.Provider>
+        </StyledNextButton>
+      )}
     </StyledGameContainer>
   );
 }

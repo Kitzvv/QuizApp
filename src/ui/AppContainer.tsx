@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Button from "./Button";
 
@@ -12,9 +12,11 @@ const StyledAppContainer = styled.div`
 `;
 
 export default function AppContainer() {
+  const location = useLocation();
+
   return (
     <StyledAppContainer>
-      <Button />
+      {!location.pathname.includes("quiz") && <Button />}
       <Outlet />
     </StyledAppContainer>
   );

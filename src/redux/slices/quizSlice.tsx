@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const additionalPoints = 10;
+
 const apiData = {
   movies: 11,
   music: 12,
@@ -10,19 +12,34 @@ const apiData = {
   scienceandnature: 17,
 };
 
-const initialState = {
+type StateType = {
+  questions: string[];
+  answers: { text: string; correct: boolean }[][];
+  currentQuestion: number;
+  isAnswerCorrect: boolean | null;
+  score: number;
+  quizOver: boolean;
+  isLoading: boolean;
+  gameTime: number;
+};
+
+const initialState: StateType = {
   questions: [],
   answers: [],
   currentQuestion: 0,
+  isAnswerCorrect: null,
+
   score: 0,
   quizOver: false,
   isLoading: false,
+  gameTime: 10000,
 };
 
 export const fetchData = createAsyncThunk(
   "quiz/fetchData",
   async ({ category, difficulty }) => {
-    const categoryCode = apiData[category];
+    const formattedCategory = category.replace(/-/g, "");
+    const categoryCode = apiData[formattedCategory];
     const response = await axios.get(
       `https://opentdb.com/api.php?amount=10&category=${categoryCode}&difficulty=${difficulty}&type=multiple`
     );
@@ -34,7 +51,23 @@ export const fetchData = createAsyncThunk(
 const quizSlice = createSlice({
   name: "quiz",
   initialState,
-  reducers: {},
+  reducers: {
+    submitQuestion: (state, action) => {
+      const correctAnswer = state.answers[state.currentQuestion].find(
+        (answer) => answer.correct === true
+      );
+      console.log(correctAnswer.correct);
+      console.log(action.payload.correct);
+
+      if (correctAnswer.correct === action.payload.correct) {
+        state.isAnswerCorrect = true;
+        state.score += additionalPoints;
+        console.log(state.isAnswerCorrect);
+      } else {
+        state.isAnswerCorrect = false;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchData.pending, (state) => {
@@ -62,5 +95,7 @@ const quizSlice = createSlice({
       });
   },
 });
+
+export const { submitQuestion } = quizSlice.actions;
 
 export default quizSlice.reducer;
