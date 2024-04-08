@@ -5,7 +5,7 @@ import {
   submitQuestion,
 } from "../redux/slices/quizSlice";
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../ui/Spinner";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -20,6 +20,25 @@ const StyledGameContainer = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
+`;
+
+const StyledAddonsContainer = styled.div`
+  position: absolute;
+  top: 0rem;
+
+  padding: 4rem;
+  width: 100%;
+  height: 10rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const StyledAddonsText = styled.p`
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #71717a;
 `;
 
 const StyledQuestion = styled.h1`
@@ -139,6 +158,12 @@ function Game() {
   }
   return (
     <StyledGameContainer>
+      <StyledAddonsContainer>
+        <StyledAddonsText>Timer: 00:00</StyledAddonsText>
+        <StyledAddonsText>
+          {currentQuestion + 1} / {questions.length}
+        </StyledAddonsText>
+      </StyledAddonsContainer>
       <StyledQuestion
         dangerouslySetInnerHTML={{ __html: questions[currentQuestion] }}
       />

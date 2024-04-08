@@ -62,6 +62,7 @@ const quizSlice = createSlice({
       if (correctAnswer.correct === action.payload.correct) {
         state.isAnswerCorrect = true;
         state.score += additionalPoints;
+
         console.log(state.isAnswerCorrect);
       } else {
         state.isAnswerCorrect = false;
