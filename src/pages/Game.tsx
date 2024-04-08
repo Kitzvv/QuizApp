@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {
   fetchData,
   nextQuestion,
+  startGame,
   submitQuestion,
 } from "../redux/slices/quizSlice";
 import { useEffect, useState } from "react";
@@ -10,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../ui/Spinner";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import Timer from "../ui/Timer";
 
 const StyledGameContainer = styled.div`
   display: flex;
@@ -28,7 +30,7 @@ const StyledAddonsContainer = styled.div`
 
   padding: 4rem;
   width: 100%;
-  height: 10rem;
+  height: 5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -132,13 +134,16 @@ function Game() {
   const score = useSelector((state: State) => state.Quiz.score);
 
   useEffect(() => {
-    dispatch(fetchData({ category, difficulty }));
+    dispatch(fetchData({ category, difficulty })).then(() => {
+      dispatch(startGame());
+    });
   }, [category, difficulty, dispatch]);
 
   function handleAnswerClick(answer: object) {
     setIsSubmited(true);
     dispatch(submitQuestion(answer));
   }
+
   function handleNextClick() {
     setIsSubmited(false);
 
@@ -159,7 +164,9 @@ function Game() {
   return (
     <StyledGameContainer>
       <StyledAddonsContainer>
-        <StyledAddonsText>Timer: 00:00</StyledAddonsText>
+        <StyledAddonsText>
+          <Timer />
+        </StyledAddonsText>
         <StyledAddonsText>
           {currentQuestion + 1} / {questions.length}
         </StyledAddonsText>

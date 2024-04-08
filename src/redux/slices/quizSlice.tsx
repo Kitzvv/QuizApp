@@ -3,6 +3,8 @@ import axios from "axios";
 
 const additionalPoints = 10;
 
+const SECS_PER_QUESTION = 30;
+
 const apiData = {
   movies: 11,
   music: 12,
@@ -18,7 +20,7 @@ type StateType = {
   currentQuestion: number;
   isAnswerCorrect: boolean | null;
   score: number;
-  quizOver: boolean;
+  gameOver: boolean;
   isLoading: boolean;
   gameTime: number;
 };
@@ -30,9 +32,9 @@ const initialState: StateType = {
   isAnswerCorrect: null,
 
   score: 0,
-  quizOver: false,
+  gameOver: false,
   isLoading: false,
-  gameTime: 10000,
+  gameTime: 1,
 };
 
 export const fetchData = createAsyncThunk(
@@ -52,12 +54,13 @@ const quizSlice = createSlice({
   name: "quiz",
   initialState,
   reducers: {
+    startGame: (state) => {
+      state.gameTime = SECS_PER_QUESTION * state.questions.length;
+    },
     submitQuestion: (state, action) => {
       const correctAnswer = state.answers[state.currentQuestion].find(
         (answer) => answer.correct === true
       );
-      console.log(correctAnswer.correct);
-      console.log(action.payload.correct);
 
       if (correctAnswer.correct === action.payload.correct) {
         state.isAnswerCorrect = true;
@@ -74,6 +77,14 @@ const quizSlice = createSlice({
     },
     finishGame: (state) => {
       Object.assign(state, initialState);
+    },
+    tick: (state) => {
+      if (state.gameTime > 0) {
+        state.gameTime -= 1;
+      }
+      if (state.gameTime === 0) {
+        state.gameOver = true;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -104,6 +115,7 @@ const quizSlice = createSlice({
   },
 });
 
-export const { submitQuestion, nextQuestion, finishGame } = quizSlice.actions;
+export const { startGame, submitQuestion, nextQuestion, finishGame, tick } =
+  quizSlice.actions;
 
 export default quizSlice.reducer;

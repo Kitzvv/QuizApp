@@ -74,6 +74,7 @@ function Finish() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const score = useSelector((state: any) => state.Quiz.score);
+  const gameOver = useSelector((state: any) => state.Quiz.gameOver);
 
   function handleFinishGame() {
     navigate("/");
@@ -82,7 +83,9 @@ function Finish() {
 
   return (
     <StyledFinishContainer>
-      <StyledH1>Congratulations</StyledH1>
+      <StyledH1>
+        {gameOver === false ? "Congratulations" : "You ran out of time"}
+      </StyledH1>
       <StyledTextContainer>
         <StyledH3>You end up with score {score} out of 100</StyledH3>
         <StyledText>
