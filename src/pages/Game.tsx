@@ -45,7 +45,7 @@ const StyledAddonsText = styled.p`
 
 const StyledQuestion = styled.h1`
   font-size: 2.4rem;
-  font-weight: 400;
+  font-weight: 600;
   color: #71717a;
   text-align: center;
 
@@ -53,7 +53,7 @@ const StyledQuestion = styled.h1`
 `;
 
 const StyledPoints = styled.p`
-  font-size: 3.2rem;
+  font-size: 2.5rem;
   font-weight: 400;
   color: #71717a;
   margin-top: -1rem;

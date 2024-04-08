@@ -1,42 +1,25 @@
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-
-const LevelContainer = styled.div`
-  display: flex;
-  height: 55rem;
-
-  justify-content: space-between;
-  width: 100%;
-  padding: 5rem;
-
-  margin-top: -5rem;
-`;
+import { StyledLine } from "./Homepage";
 
 const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  width: 100%;
 `;
 
 const StyledH1 = styled.h1`
   color: #71717a;
   font-size: 4rem;
-  text-align: center;
   margin-top: 3rem;
   font-weight: 600;
+
+  margin-bottom: -1.5rem;
+`;
+
+const StyledTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.2rem;
-`;
-
-const StyledLine = styled.div`
-  height: 0.5rem;
-  width: 4rem;
-  margin-top: -2rem;
-
-  background-color: #71717a;
 `;
 
 const StyledCategoryName = styled.p`
@@ -44,6 +27,15 @@ const StyledCategoryName = styled.p`
   font-weight: 500;
   color: #71717a;
   text-transform: uppercase;
+`;
+
+const LevelContainer = styled.div`
+  display: flex;
+  height: 50rem;
+
+  justify-content: space-between;
+  width: 100%;
+  padding: 5rem;
 `;
 
 const Level = styled.div`
@@ -79,9 +71,11 @@ function ChooseDifficulty() {
 
   return (
     <StyledContainer>
-      <StyledH1>Choose Difficulty</StyledH1>
-      <StyledLine />
-      <StyledCategoryName>{category?.replace(/-/g, " ")}</StyledCategoryName>
+      <StyledTextContainer>
+        <StyledH1>Choose Difficulty</StyledH1>
+        <StyledCategoryName>{category?.replace(/-/g, " ")}</StyledCategoryName>
+        <StyledLine />
+      </StyledTextContainer>
       <LevelContainer>
         <Level onClick={() => handleLevelClick("easy")}>
           <StyledEmoji>🥉</StyledEmoji>

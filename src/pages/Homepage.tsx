@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const StyledHomepageContainer = styled.main`
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10rem;
+`;
+
 const StyledH1 = styled.h1`
   color: #71717a;
   font-size: 4rem;
@@ -13,12 +24,11 @@ const StyledH1 = styled.h1`
   gap: 1.2rem;
 `;
 
-const StyledMain = styled.main`
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 10rem;
+export const StyledLine = styled.div`
+  height: 0.5rem;
+  width: 4rem;
+
+  background-color: #64748b;
 `;
 
 const StyledText = styled.p`
@@ -44,16 +54,9 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const StyledLine = styled.div`
-  height: 0.5rem;
-  width: 4rem;
-
-  background-color: #64748b;
-`;
-
 function Homepage() {
   return (
-    <StyledMain>
+    <StyledHomepageContainer>
       <StyledH1>
         Welcome to Quizzies
         <StyledLine />
@@ -64,7 +67,7 @@ function Homepage() {
         consectetur magni aliquam dolores. Architecto aut in repudiandae!
       </StyledText>
       <StyledLink to="/categories">Get Started</StyledLink>
-    </StyledMain>
+    </StyledHomepageContainer>
   );
 }
 

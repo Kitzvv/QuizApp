@@ -6,6 +6,7 @@ import { IconContext } from "react-icons";
 import { IoGameControllerOutline, IoLeafOutline } from "react-icons/io5";
 import { IoIosGlobe } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { StyledLine } from "./Homepage";
 
 const StyledH1 = styled.h1`
   color: #71717a;
@@ -67,7 +68,10 @@ function Categories() {
 
   return (
     <>
-      <StyledH1>Categories</StyledH1>
+      <StyledH1>
+        Categories
+        <StyledLine />
+      </StyledH1>
       <FlexContainer>
         <StyledContainer>
           <CategoryContainer onClick={() => handleCategoryClick("movies")}>
