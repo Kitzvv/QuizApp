@@ -12,6 +12,8 @@ import Spinner from "../ui/Spinner";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import Timer from "../ui/Timer";
+import ProgressBar from "@ramonak/react-progress-bar";
+import ProgressBarComponent from "../ui/ProgressBar";
 
 const StyledGameContainer = styled.div`
   display: flex;
@@ -200,6 +202,7 @@ function Game() {
           </IconContext.Provider>
         </StyledNextButton>
       )}
+      <ProgressBarComponent />
     </StyledGameContainer>
   );
 }

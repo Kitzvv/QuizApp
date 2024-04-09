@@ -3,7 +3,7 @@ import axios from "axios";
 
 const additionalPoints = 10;
 
-const SECS_PER_QUESTION = 30;
+const SECS_PER_QUESTION = 15;
 
 const apiData = {
   movies: 11,
