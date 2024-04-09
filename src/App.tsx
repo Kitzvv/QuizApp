@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import GlobalStyles from "./ui/GlobalStyles";
 import AppLayout from "./ui/AppLayout";
 
@@ -7,6 +8,8 @@ import Categories from "./pages/Categories";
 import ChooseDifficulty from "./pages/ChooseDifficulty";
 import Game from "./pages/Game";
 import Finish from "./pages/Finish";
+import PageNotFound from "./pages/PageNotFound";
+import { Navigate } from "react-router";
 
 function App() {
   return (
@@ -22,6 +25,8 @@ function App() {
           ></Route>
           <Route path="quiz/:category/:difficulty" element={<Game />}></Route>
           <Route path="finish" element={<Finish />} />
+          <Route path="/404" element={<PageNotFound />} />
+          <Route path="*" element={<Navigate to="/404" />} />
         </Route>
       </Routes>
     </BrowserRouter>
