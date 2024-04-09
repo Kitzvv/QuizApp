@@ -10,6 +10,8 @@ const StyledHomepageContainer = styled.main`
   align-items: center;
   flex-direction: column;
   gap: 10rem;
+
+  position: relative;
 `;
 
 const StyledH1 = styled.h1`
@@ -35,6 +37,7 @@ const StyledText = styled.p`
   font-size: 2.4rem;
   text-align: center;
   color: #71717a;
+  padding: 0rem 2rem;
 `;
 
 const StyledLink = styled(Link)`
@@ -54,6 +57,18 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const StyledFooterText = styled.p`
+  position: absolute;
+  bottom: 0rem;
+  font-size: 1.4rem;
+  color: #71717a;
+  a {
+    font-weight: 600;
+    color: #18181b;
+    text-decoration: none;
+  }
+`;
+
 function Homepage() {
   return (
     <StyledHomepageContainer>
@@ -62,11 +77,16 @@ function Homepage() {
         <StyledLine />
       </StyledH1>
       <StyledText>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur ea
-        sunt dolorum aspernatur, ad in culpa placeat sed fugit nam. Aliquid illo
-        consectetur magni aliquam dolores. Architecto aut in repudiandae!
+        Explore six diverse categories and various difficulty levels tailored to
+        your expertise. Embark on a trivia adventure today! Built with
+        TypeScript, React Router, Styled Components, and Redux, Quizzies offers
+        a seamless and immersive experience for all trivia enthusiasts.
       </StyledText>
       <StyledLink to="/categories">Get Started</StyledLink>
+      <StyledFooterText>
+        Developed by <a href="https://github.com/Kitzvv">Michał Nowakowski</a>{" "}
+        for learning purposes
+      </StyledFooterText>
     </StyledHomepageContainer>
   );
 }
