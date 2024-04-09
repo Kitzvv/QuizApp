@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { tick } from "../redux/slices/quizSlice";
 import { useNavigate } from "react-router-dom";
+import { RootState } from "../redux/store";
 
 function Timer() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const gameTime = useSelector((state: State) => state.Quiz.gameTime);
-  const gameOver = useSelector((state: State) => state.Quiz.gameOver);
+  const gameTime = useSelector((state: RootState) => state.quiz.gameTime);
+  const gameOver = useSelector((state: RootState) => state.quiz.gameOver);
 
   const mins = Math.floor(gameTime / 60);
   const seconds = gameTime % 60;

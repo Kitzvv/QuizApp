@@ -5,7 +5,27 @@ const additionalPoints = 10;
 
 const SECS_PER_QUESTION = 15;
 
-const apiData = {
+type ApiDataType = {
+  [key: string]: number;
+  movies: number;
+  music: number;
+  books: number;
+  games: number;
+  geography: number;
+  scienceandnature: number;
+};
+interface AnswerType {
+  text: string;
+  correct: boolean;
+}
+
+interface ResultType {
+  question: string;
+  correct_answer: string;
+  incorrect_answers: string[];
+}
+
+const apiData: ApiDataType = {
   movies: 11,
   music: 12,
   books: 10,
@@ -13,6 +33,11 @@ const apiData = {
   geography: 22,
   scienceandnature: 17,
 };
+
+interface FetchDataArg {
+  category: string;
+  difficulty: string;
+}
 
 type StateType = {
   questions: string[];
@@ -30,7 +55,6 @@ const initialState: StateType = {
   answers: [],
   currentQuestion: 0,
   isAnswerCorrect: null,
-
   score: 0,
   gameOver: false,
   isLoading: false,
@@ -39,7 +63,7 @@ const initialState: StateType = {
 
 export const fetchData = createAsyncThunk(
   "quiz/fetchData",
-  async ({ category, difficulty }) => {
+  async ({ category, difficulty }: FetchDataArg) => {
     const formattedCategory = category.replace(/-/g, "");
     const categoryCode = apiData[formattedCategory];
     const response = await axios.get(
@@ -62,7 +86,7 @@ const quizSlice = createSlice({
         (answer) => answer.correct === true
       );
 
-      if (correctAnswer.correct === action.payload.correct) {
+      if (correctAnswer && correctAnswer.correct === action.payload.correct) {
         state.isAnswerCorrect = true;
         state.score += additionalPoints;
 
@@ -94,10 +118,10 @@ const quizSlice = createSlice({
       })
       .addCase(fetchData.fulfilled, (state, action) => {
         state.questions = action.payload.results.map(
-          (result) => result.question
+          (result: ResultType) => result.question
         );
-        state.answers = action.payload.results.map((result) => {
-          const answers = [
+        state.answers = action.payload.results.map((result: ResultType) => {
+          const answers: AnswerType[] = [
             { text: result.correct_answer, correct: true },
             ...result.incorrect_answers.map((answer) => ({
               text: answer,
@@ -109,7 +133,7 @@ const quizSlice = createSlice({
         console.log(state.answers);
         state.isLoading = false;
       })
-      .addCase(fetchData.rejected, (state, action) => {
+      .addCase(fetchData.rejected, (state) => {
         state.isLoading = false;
       });
   },

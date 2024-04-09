@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { finishGame } from "../redux/slices/quizSlice";
+import { RootState } from "../redux/store";
 
 const StyledFinishContainer = styled.div`
   height: 100%;
@@ -73,8 +74,8 @@ const StyledEndButton = styled.button`
 function Finish() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const score = useSelector((state: any) => state.Quiz.score);
-  const gameOver = useSelector((state: any) => state.Quiz.gameOver);
+  const score = useSelector((state: RootState) => state.quiz.score);
+  const gameOver = useSelector((state: RootState) => state.quiz.gameOver);
 
   function handleFinishGame() {
     navigate("/");

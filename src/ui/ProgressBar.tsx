@@ -1,6 +1,7 @@
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../redux/store";
 
 const StyledProgressBar = styled(ProgressBar)`
   position: absolute;
@@ -10,10 +11,10 @@ const StyledProgressBar = styled(ProgressBar)`
 
 function ProgressBarComponent() {
   const currentQuestion = useSelector(
-    (state: State) => state.Quiz.currentQuestion
+    (state: RootState) => state.quiz.currentQuestion
   );
 
-  const questions = useSelector((state: State) => state.Quiz.questions);
+  const questions = useSelector((state: RootState) => state.quiz.questions);
 
   return (
     <StyledProgressBar

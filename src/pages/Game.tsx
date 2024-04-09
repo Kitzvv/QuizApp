@@ -12,7 +12,8 @@ import Spinner from "../ui/Spinner";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import Timer from "../ui/Timer";
-import ProgressBar from "@ramonak/react-progress-bar";
+import { AppDispatch, RootState } from "../redux/store";
+
 import ProgressBarComponent from "../ui/ProgressBar";
 
 const StyledGameContainer = styled.div`
@@ -112,33 +113,28 @@ const StyledNextButton = styled.button`
 `;
 
 function Game() {
-  interface State {
-    questions: any;
-    isLoading: boolean;
-  }
-
   const [isSubbmited, setIsSubmited] = useState(false);
 
   const { category } = useParams<{ category: string }>();
   const { difficulty } = useParams<{ difficulty: string }>();
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
-  const questions = useSelector((state: State) => state.Quiz.questions);
-  const isLoading = useSelector((state: State) => state.Quiz.isLoading);
-  const answers = useSelector((state: State) => state.Quiz.answers);
+  const questions = useSelector((state: RootState) => state.quiz.questions);
+  const isLoading = useSelector((state: RootState) => state.quiz.isLoading);
+  const answers = useSelector((state: RootState) => state.quiz.answers);
   const currentQuestion = useSelector(
-    (state: State) => state.Quiz.currentQuestion
+    (state: RootState) => state.quiz.currentQuestion
   );
-  const isAnswerCorrect = useSelector(
-    (state: State) => state.Quiz.isAnswerCorrect
-  );
-  const score = useSelector((state: State) => state.Quiz.score);
+
+  const score = useSelector((state: RootState) => state.quiz.score);
 
   useEffect(() => {
-    dispatch(fetchData({ category, difficulty })).then(() => {
-      dispatch(startGame());
-    });
+    if (category && difficulty) {
+      dispatch(fetchData({ category, difficulty })).then(() => {
+        dispatch(startGame());
+      });
+    }
   }, [category, difficulty, dispatch]);
 
   function handleAnswerClick(answer: object) {
