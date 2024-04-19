@@ -14,7 +14,7 @@ const StyledWaveTop = styled.div`
   width: 100%;
   top: 30%;
   position: absolute;
-  background-image: url("/public/wave-1.svg");
+  background-image: url("/wave-1.svg");
 `;
 
 const StyledWaveMiddle = styled.div`
@@ -22,7 +22,7 @@ const StyledWaveMiddle = styled.div`
   width: 100%;
   top: 50%;
   position: absolute;
-  background-image: url("/public/wave-2.svg");
+  background-image: url("/wave-2.svg");
 `;
 
 const StyledMiddleBox = styled.div`
@@ -38,7 +38,7 @@ const StyledWaveBottom = styled.div`
   width: 100%;
   top: 76%;
   position: absolute;
-  background-image: url("/public/wave-3.svg");
+  background-image: url("/wave-3.svg");
 `;
 
 function AppBackground() {
