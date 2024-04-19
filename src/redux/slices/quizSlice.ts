@@ -47,6 +47,7 @@ type StateType = {
   score: number;
   gameOver: boolean;
   isLoading: boolean;
+  errorWhenFetching: boolean;
   gameTime: number;
 };
 
@@ -58,19 +59,25 @@ const initialState: StateType = {
   score: 0,
   gameOver: false,
   isLoading: false,
+  errorWhenFetching: false,
   gameTime: 1,
 };
 
 export const fetchData = createAsyncThunk(
   "quiz/fetchData",
   async ({ category, difficulty }: FetchDataArg) => {
-    const formattedCategory = category.replace(/-/g, "");
-    const categoryCode = apiData[formattedCategory];
-    const response = await axios.get(
-      `https://opentdb.com/api.php?amount=10&category=${categoryCode}&difficulty=${difficulty}&type=multiple`
-    );
+    try {
+      const formattedCategory = category.replace(/-/g, "");
+      const categoryCode = apiData[formattedCategory];
+      const response = await axios.get(
+        `https://opentdb.com/api.php?amount=10&category=${categoryCode}&difficulty=${difficulty}&type=multiple`
+      );
 
-    return response.data;
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   }
 );
 
@@ -117,6 +124,7 @@ const quizSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchData.fulfilled, (state, action) => {
+        state.errorWhenFetching = false;
         state.questions = action.payload.results.map(
           (result: ResultType) => result.question
         );
@@ -133,8 +141,11 @@ const quizSlice = createSlice({
         console.log(state.answers);
         state.isLoading = false;
       })
-      .addCase(fetchData.rejected, (state) => {
+      .addCase(fetchData.rejected, (state, action) => {
         state.isLoading = false;
+        if (action.error) {
+          state.errorWhenFetching = true;
+        }
       });
   },
 });

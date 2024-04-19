@@ -112,6 +112,21 @@ const StyledNextButton = styled.button`
   right: 3rem;
 `;
 
+const StyledErrorButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: #ffffff;
+  border: 1px solid #71717a;
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  border-radius: 10rem;
+  font-weight: 300;
+
+  cursor: pointer;
+`;
+
 function Game() {
   const [isSubbmited, setIsSubmited] = useState(false);
 
@@ -125,6 +140,9 @@ function Game() {
   const answers = useSelector((state: RootState) => state.quiz.answers);
   const currentQuestion = useSelector(
     (state: RootState) => state.quiz.currentQuestion
+  );
+  const errorWhenFetching = useSelector(
+    (state: RootState) => state.quiz.errorWhenFetching
   );
 
   const score = useSelector((state: RootState) => state.quiz.score);
@@ -152,13 +170,33 @@ function Game() {
     dispatch(nextQuestion());
   }
 
-  if (isLoading || !questions || !answers || !answers[0]) {
+  if (errorWhenFetching) {
+    return (
+      <StyledGameContainer>
+        <StyledQuestion>
+          There was an error fetching the questions
+        </StyledQuestion>
+        <StyledErrorButton onClick={() => navigate("/")}>
+          Go back
+        </StyledErrorButton>
+      </StyledGameContainer>
+    );
+  }
+
+  // if (isLoading || !questions || !answers || !answers[0]) {
+  if (
+    (isLoading && !errorWhenFetching) ||
+    !questions.length ||
+    !answers.length
+  ) {
+    // if (isLoading && !errorWhenFetching) {
     return (
       <StyledGameContainer>
         <Spinner />
       </StyledGameContainer>
     );
   }
+
   return (
     <StyledGameContainer>
       <StyledAddonsContainer>

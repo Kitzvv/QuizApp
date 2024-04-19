@@ -50,11 +50,6 @@ const StyledLink = styled(Link)`
   border: 1px solid #4f46e5;
   color: #292524;
   text-decoration: none;
-
-  &:hover {
-    background-color: #eef2ff;
-    transition: all 0.5s;
-  }
 `;
 
 const StyledFooterText = styled.p`

@@ -7,6 +7,7 @@ import { IoGameControllerOutline, IoLeafOutline } from "react-icons/io5";
 import { IoIosGlobe } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { StyledLine } from "./Homepage";
+import { device } from "../breakpoints";
 
 const StyledH1 = styled.h1`
   color: #71717a;
@@ -37,6 +38,15 @@ const StyledContainer = styled.div`
   padding: 2rem;
   gap: 2rem;
   grid-template-columns: 1fr 1fr 1fr;
+
+  @media ${device.md} {
+    height: 70vh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: auto;
+  }
 `;
 
 const CategoryContainer = styled.div`
