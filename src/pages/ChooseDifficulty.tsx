@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { StyledLine } from "./Homepage";
+import { device } from "../breakpoints";
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -36,6 +37,14 @@ const LevelContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 5rem;
+
+  @media ${device.md} {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    height: 70vh;
+  }
 `;
 
 const Level = styled.div`

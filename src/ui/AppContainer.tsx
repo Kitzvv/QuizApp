@@ -11,7 +11,7 @@ const StyledAppContainer = styled.div`
   z-index: 50;
   position: relative;
 
-  @media ${device.md} {
+  @media ${device.lg} {
     height: 100vh;
     width: 100vh;
   }
