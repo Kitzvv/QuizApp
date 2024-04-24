@@ -1,6 +1,7 @@
 import { IconContext } from "react-icons";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
+import { device } from "../breakpoints";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
@@ -20,6 +21,14 @@ const StyledButton = styled.button`
   left: 3rem;
 
   cursor: pointer;
+
+  @media ${device.xs} {
+    font-size: 1.4rem;
+    padding: 0.8rem 1.6rem;
+
+    top: 1rem;
+    left: 1rem;
+  }
 `;
 
 function Button() {

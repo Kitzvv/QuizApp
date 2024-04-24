@@ -13,6 +13,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import Timer from "../ui/Timer";
 import { AppDispatch, RootState } from "../redux/store";
+import { device } from "../breakpoints";
 
 import ProgressBarComponent from "../ui/ProgressBar";
 
@@ -25,6 +26,10 @@ const StyledGameContainer = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
+
+  @media ${device.md} {
+    justify-content: flex-start;
+  }
 `;
 
 const StyledAddonsContainer = styled.div`
@@ -38,6 +43,12 @@ const StyledAddonsContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  @media ${device.md} {
+    position: fixed;
+    padding: 2rem;
+    height: auto;
+  }
 `;
 
 const StyledAddonsText = styled.p`
@@ -53,6 +64,11 @@ const StyledQuestion = styled.h1`
   text-align: center;
 
   padding: 2rem;
+
+  @media ${device.xs} {
+    font-size: 1.8rem;
+    padding: 1rem;
+  }
 `;
 
 const StyledPoints = styled.p`
@@ -60,6 +76,10 @@ const StyledPoints = styled.p`
   font-weight: 400;
   color: #71717a;
   margin-top: -1rem;
+
+  media ${device.xs} {
+    font-size: 1.8rem;
+  }
 `;
 
 const StyledAnswersContainer = styled.div`
@@ -93,6 +113,10 @@ const StyledAnswers = styled.button`
     background-color: #f87171;
     transition: background-color 0.3s;
   }
+
+  @media ${device.sm} {
+    width: 20rem;
+  }
 `;
 
 const StyledNextButton = styled.button`
@@ -110,6 +134,29 @@ const StyledNextButton = styled.button`
   position: absolute;
   bottom: 2rem;
   right: 3rem;
+
+  @media ${device.md} {
+    padding: 2rem 4rem;
+    font-size: 2rem;
+    right: 50%;
+    position: fixed;
+    bottom: 40rem;
+
+    transform: translate(50%, 0);
+  }
+  @media ${device.sm} {
+    position: fixed;
+    bottom: 40rem;
+    right: 50%;
+    transform: translateX(50%);
+    transform: translateY(50%);
+  }
+  @media ${device.xs} {
+    position: fixed;
+    bottom: 10rem;
+    right: 50%;
+    transform: translateX(50%);
+  }
 `;
 
 const StyledErrorButton = styled.button`

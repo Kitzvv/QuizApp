@@ -9,6 +9,19 @@ import { useNavigate } from "react-router-dom";
 import { StyledLine } from "./Homepage";
 import { device } from "../breakpoints";
 
+const StyledCategoriesContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+
+  @media ${device.xs} {
+    overflow: scroll;
+  }
+`;
+
 const StyledH1 = styled.h1`
   color: #71717a;
   font-size: 4rem;
@@ -34,25 +47,42 @@ const StyledContainer = styled.div`
   width: 90%;
 
   display: grid;
+  justify-items: center;
+  align-items: center;
 
   padding: 2rem;
   gap: 2rem;
   grid-template-columns: 1fr 1fr 1fr;
 
   @media ${device.md} {
-    height: 70vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+  }
 
-    display: flex;
-    flex-direction: column;
+  @media ${device.md} and (orientation: landscape) {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
 
-    overflow: auto;
+  @media ${device.xs} {
+    gap: 1rem;
+  }
+
+  @media ${device.lgPhones} {
+    overflow-y: scroll;
+    height: 20rem;
   }
 `;
 
 const CategoryContainer = styled.div`
   border: 2px solid #d4d4d4;
 
-  height: 20rem;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
@@ -61,12 +91,37 @@ const CategoryContainer = styled.div`
   align-items: center;
 
   cursor: pointer;
+
+  @media ${device.md} and (orientation: landscape) {
+    max-height: 5rem;
+  }
+
+  @media ${device.xs} {
+    overflow-y: auto;
+    align-content: center;
+    justify-content: center;
+    max-height: 15rem;
+    width: 15rem;
+  }
+
+  @media not ${device.xs} {
+    height: 20rem;
+  }
 `;
 
 const StyledCategoryName = styled.p`
   font-size: 2.4rem;
   font-weight: 500;
   color: #71717a;
+  text-align: center;
+
+  @media ${device.xs} {
+    font-size: 1.6rem;
+  }
+
+  @media ${device.md} and (orientation: landscape) {
+    font-size: 1.6rem;
+  }
 `;
 
 function Categories() {
@@ -90,7 +145,7 @@ function Categories() {
   };
 
   return (
-    <>
+    <StyledCategoriesContainer>
       <StyledH1>
         Categories
         <StyledLine />
@@ -110,7 +165,7 @@ function Categories() {
           ))}
         </StyledContainer>
       </FlexContainer>
-    </>
+    </StyledCategoriesContainer>
   );
 }
 

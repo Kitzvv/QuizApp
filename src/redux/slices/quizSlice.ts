@@ -3,7 +3,8 @@ import axios from "axios";
 
 const additionalPoints = 10;
 
-const SECS_PER_QUESTION = 15;
+// const SECS_PER_QUESTION = 15;
+const SECS_PER_QUESTION = 9999;
 
 type ApiDataType = {
   [key: string]: number;

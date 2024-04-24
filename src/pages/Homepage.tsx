@@ -7,7 +7,7 @@ const StyledHomepageContainer = styled.main`
   width: 100%;
 
   display: flex;
-  justify-items: center;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 10rem;
@@ -15,26 +15,36 @@ const StyledHomepageContainer = styled.main`
   position: relative;
 
   @media ${device.lg} {
-    justify-content: center;
+    justify-content: space-evenly;
+    gap: 4rem;
+  }
+
+  @media ${device.lg} and (orientation: landscape) {
+    overflow-y: scroll;
+    position: sticky;
+
+    gap: 2rem;
+  }
+
+  @media ${device.lgPhones} {
+    overflow-y: scroll;
+    position: fixed;
+
+    gap: 2rem;
   }
 
   @media ${device.md} {
-    gap: 5rem;
-  }
-
-  @media ${device.sm} {
-    justify-content: space-evenly;
+    position: relative;
     gap: 2rem;
   }
 
   @media ${device.sm} {
-    justify-content: space-evenly;
-    gap: 2rem;
+    overflow: scroll;
+    gap: 0.5rem;
   }
 
   @media ${device.xs} {
-    justify-content: space-around;
-    gap: 1rem;
+    gap: 0.2rem;
   }
 `;
 
@@ -42,7 +52,7 @@ const StyledH1 = styled.h1`
   color: #71717a;
   font-size: 4rem;
   text-align: center;
-  margin-top: 8rem;
+  margin-top: 4rem;
   font-weight: 600;
   display: flex;
   flex-direction: column;
@@ -50,15 +60,18 @@ const StyledH1 = styled.h1`
   gap: 1.2rem;
 
   @media ${device.lg} {
-    font-size: 8rem;
+    font-size: 4rem;
   }
 
-  @media ${device.md} {
-    font-size: 6rem;
+  @media ${device.md} and (orientation: landscape) {
+    font-size: 3rem;
   }
 
   @media ${device.sm} {
     font-size: 4rem;
+  }
+  @media ${device.xs} {
+    font-size: 3rem;
   }
 `;
 
@@ -69,13 +82,12 @@ export const StyledLine = styled.div`
   background-color: #64748b;
 
   @media ${device.lg} {
-    height: 1rem;
+    height: 0.5rem;
     width: 8rem;
   }
 
   @media ${device.md} {
-    height: 0.5rem;
-    width: 8rem;
+    width: 6rem;
   }
 
   @media ${device.sm} {
@@ -91,15 +103,10 @@ const StyledText = styled.p`
   padding: 0rem 2rem;
 
   @media ${device.lg} {
-    font-size: 4rem;
+    font-size: 2.4rem;
   }
-
-  @media ${device.md} {
-    font-size: 3rem;
-  }
-
-  @media ${device.sm} {
-    font-size: 2rem;
+  @media ${device.md} and (orientation: landscape) {
+    font-size: 1.5rem;
   }
 `;
 
@@ -115,18 +122,16 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 
   @media ${device.lg} {
-    font-size: 2.4rem;
-    padding: 3rem 6rem;
-  }
-
-  @media ${device.md} {
     font-size: 2rem;
     padding: 2rem 4rem;
   }
+  @media ${device.md} and (orientation: landscape) {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+  }
 
   @media ${device.sm} {
-    font-size: 1.6rem;
-    padding: 2rem 4rem;
+    padding: 1rem 2rem;
   }
 `;
 
@@ -136,6 +141,7 @@ const StyledFooterText = styled.p`
   font-size: 1.4rem;
   color: #71717a;
   a {
+    text-align: center;
     font-weight: 600;
     color: #18181b;
     text-decoration: none;
@@ -143,19 +149,21 @@ const StyledFooterText = styled.p`
 
   @media ${device.lg} {
     position: static;
-    font-size: 3rem;
-  }
-  @media ${device.md} {
     font-size: 2.5rem;
+    margin-bottom: 12rem;
+  }
+
+  @media (orientation: landscape) {
+    font-size: 1.5rem;
   }
 
   @media ${device.sm} {
-    font-size: 1.4rem;
+    font-size: 2rem;
+    margin-bottom: 6rem;
   }
-
-  @media ${device.sm} {
-    font-size: 1.4rem;
-    margin-bottom: 2rem;
+  @media ${device.xs} {
+    font-size: 1.5rem;
+    margin-bottom: 10rem;
   }
 `;
 
@@ -174,8 +182,9 @@ function Homepage() {
       </StyledText>
       <StyledLink to="/categories">Get Started</StyledLink>
       <StyledFooterText>
-        Developed by <a href="https://github.com/Kitzvv">Michał Nowakowski</a>{" "}
-        for learning purposes
+        Developed by{" "}
+        <a href="https://michalnowakowski.netlify.app">Michał Nowakowski</a> for
+        learning purposes
       </StyledFooterText>
     </StyledHomepageContainer>
   );
