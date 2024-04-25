@@ -12,8 +12,12 @@ const StyledAppContainer = styled.div`
   position: relative;
 
   @media ${device.md} {
-    height: 110vh;
-    width: 130vh;
+    height: 100dvh;
+    width: 100dvh;
+  }
+  @media ${device.md} and (orientation: landscape) {
+    height: 100vh;
+    width: 100vw;
   }
 `;
 

@@ -9,7 +9,7 @@ interface Size {
 }
 
 const size: Size = {
-  xs: "31rem", // for small screen mobile
+  xs: "25rem", // for small screen mobile
   sm: "41rem", // for mobile screen
   md: "56rem", // for tablets
   lgPhones: "60rem", // for landscape phones

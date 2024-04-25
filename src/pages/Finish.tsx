@@ -6,28 +6,36 @@ import { RootState } from "../redux/store";
 import { device } from "../breakpoints";
 
 const StyledFinishContainer = styled.div`
-  max-height: 100vh;
+  height: 100%;
   width: 100%;
 
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 6rem;
 
   @media ${device.lgPhones} {
-    overflow: auto;
-    /* background-color: blue; */
+    gap: 2rem;
+    justify-content: start;
   }
 
+  @media ${device.md} {
+    gap: 10rem;
+  }
   @media ${device.md} and (orientation: landscape) {
-    overflow: auto;
-    gap: 0rem;
+    gap: 1rem;
+    justify-content: start;
   }
 
   @media ${device.sm} {
-    gap: 1rem;
-    justify-content: center;
+    justify-content: start;
+    gap: 5rem;
+  }
+
+  @media ${device.sm} {
+    justify-content: start;
+    gap: 3rem;
   }
 `;
 
@@ -40,34 +48,36 @@ const StyledH1 = styled.h1`
 
   @media ${device.lgPhones} {
     margin-top: 2rem;
+    font-size: 3rem;
+  }
+
+  @media ${device.md} {
+    margin-top: 0rem;
+    font-size: 6rem;
   }
 
   @media ${device.md} and (orientation: landscape) {
+    margin-top: 2rem;
     font-size: 3rem;
   }
 
   @media ${device.sm} {
-    font-size: 3rem;
+    font-size: 4rem;
+    margin-top: 2rem;
   }
 `;
-
 const StyledTextContainer = styled.div`
-  height: 100%;
-  width: 100%;
+  padding: 2rem;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-
-  @media ${device.md} {
-    gap: 0rem;
-    justify-content: start;
+  @media ${device.lgPhones} {
+    padding: 0rem;
   }
+  @media ${device.md} and (orientation: landscape) {
+    padding: 0rem;
+  }
+
   @media ${device.sm} {
-    gap: 0rem;
-    justify-content: start;
+    padding: 4rem;
   }
 `;
 
@@ -79,16 +89,21 @@ const StyledH3 = styled.h3`
   font-weight: 600;
 
   @media ${device.lgPhones} {
+    font-size: 2rem;
     margin-top: 0rem;
   }
 
+  @media ${device.md} {
+    font-size: 4rem;
+  }
   @media ${device.md} and (orientation: landscape) {
     font-size: 2rem;
+    margin-top: 0rem;
   }
 
   @media ${device.sm} {
+    font-size: 3rem;
     margin-top: 0rem;
-    font-size: 2rem;
   }
 `;
 
@@ -98,24 +113,16 @@ const StyledText = styled.p`
   text-align: center;
   font-weight: 400;
 
-  @media ${device.md} and (orientation: landscape) {
-    padding: 0rem 2rem;
-    font-size: 1.5rem;
-    text-wrap: wrap;
-  }
-
-  @media ${device.sm} {
-    padding: 0rem 2rem;
-    font-size: 1.5rem;
-    text-wrap: wrap;
+  @media ${device.md} {
+    font-size: 2rem;
   }
 `;
 
 const StyledEndButton = styled.button`
   height: 5rem;
   width: 25rem;
+  color: #18181b;
 
-  margin-top: 10rem;
   background-color: #ffffff;
   border: 1px solid #71717a;
   padding: 1rem 2rem;
@@ -125,20 +132,25 @@ const StyledEndButton = styled.button`
   cursor: pointer;
 
   @media ${device.lgPhones} {
-    margin-top: 0rem;
-    margin-bottom: 30rem;
-    height: 5rem;
-    width: 25rem;
+    font-size: 2rem;
+    height: 4rem;
   }
-  @media ${device.sm} {
-    margin-top: 0rem;
+
+  @media ${device.md} {
+    font-size: 3rem;
+    height: 7rem;
   }
 
   @media ${device.md} and (orientation: landscape) {
-    margin-top: 0rem;
+    font-size: 2rem;
     height: 4rem;
-    margin-bottom: 10rem;
-    /* width: 10rem; */
+    width: 20rem;
+  }
+
+  @media ${device.sm} {
+    font-size: 3rem;
+    height: 5rem;
+    padding: 0.5rem 1rem;
   }
 `;
 
@@ -164,8 +176,9 @@ function Finish() {
           Feel free to try out different categories or other difficulty
           settings.
         </StyledText>
-        <StyledEndButton onClick={handleFinishGame}>Finish</StyledEndButton>
       </StyledTextContainer>
+
+      <StyledEndButton onClick={handleFinishGame}>Finish</StyledEndButton>
     </StyledFinishContainer>
   );
 }

@@ -14,6 +14,7 @@ import { IconContext } from "react-icons";
 import Timer from "../ui/Timer";
 import { AppDispatch, RootState } from "../redux/store";
 import { device } from "../breakpoints";
+import "../ui/IconsStyling.css";
 
 import ProgressBarComponent from "../ui/ProgressBar";
 
@@ -27,8 +28,25 @@ const StyledGameContainer = styled.div`
   width: 100%;
   position: relative;
 
+  @media ${device.lgPhones} {
+    justify-content: start;
+    gap: 1rem;
+  }
+
   @media ${device.md} {
-    justify-content: flex-start;
+    padding: 4rem 8rem;
+    justify-content: start;
+    gap: 3rem;
+  }
+
+  @media ${device.md} and (orientation: landscape) {
+    padding: 0rem;
+    gap: 0.5rem;
+  }
+
+  @media ${device.sm} {
+    padding: 2rem;
+    gap: 1rem;
   }
 `;
 
@@ -44,9 +62,15 @@ const StyledAddonsContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media ${device.md} {
+  @media ${device.lgPhones} {
     position: fixed;
-    padding: 2rem;
+  }
+
+  @media ${device.sm} {
+    position: fixed;
+  }
+  @media ${device.xs} {
+    padding: 1rem;
     height: auto;
   }
 `;
@@ -55,6 +79,13 @@ const StyledAddonsText = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   color: #71717a;
+
+  @media ${device.md} {
+    font-size: 2rem;
+  }
+  @media ${device.xs} {
+    font-size: 1.5rem;
+  }
 `;
 
 const StyledQuestion = styled.h1`
@@ -64,6 +95,24 @@ const StyledQuestion = styled.h1`
   text-align: center;
 
   padding: 2rem;
+
+  @media ${device.lgPhones} {
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+
+  @media ${device.md} {
+    font-size: 3rem;
+  }
+  @media ${device.md} and (orientation: landscape) {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  @media ${device.sm} {
+    font-size: 2rem;
+    text-wrap: wrap;
+  }
 
   @media ${device.xs} {
     font-size: 1.8rem;
@@ -77,8 +126,21 @@ const StyledPoints = styled.p`
   color: #71717a;
   margin-top: -1rem;
 
-  media ${device.xs} {
-    font-size: 1.8rem;
+  @media ${device.lgPhones} {
+    font-size: 1.5rem;
+  }
+
+  @media ${device.md} {
+    font-size: 3rem;
+  }
+
+  @media ${device.md} and (orientation: landscape) {
+    font-size: 1.5rem;
+    margin-top: -2rem;
+  }
+
+  @media ${device.sm} {
+    font-size: 2rem;
   }
 `;
 
@@ -86,6 +148,17 @@ const StyledAnswersContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  @media ${device.lgPhones} {
+    gap: 1rem;
+  }
+  @media ${device.md} and (orientation: landscape) {
+    gap: 0.5rem;
+  }
+
+  @media ${device.sm} {
+    gap: 1rem;
+  }
 `;
 
 const StyledAnswers = styled.button`
@@ -114,8 +187,30 @@ const StyledAnswers = styled.button`
     transition: background-color 0.3s;
   }
 
-  @media ${device.sm} {
+  @media ${device.lgPhones} {
+    height: 3rem;
     width: 20rem;
+    font-size: 1rem;
+  }
+
+  @media ${device.md} {
+    height: 7rem;
+    font-size: 3rem;
+  }
+  @media ${device.md} and (orientation: landscape) {
+    height: 3rem;
+    width: 20rem;
+    font-size: 1rem;
+  }
+
+  @media ${device.sm} {
+    width: 25rem;
+    font-size: 2rem;
+  }
+  @media ${device.xs} {
+    height: 5rem;
+    width: 25rem;
+    font-size: 1.5rem;
   }
 `;
 
@@ -135,27 +230,46 @@ const StyledNextButton = styled.button`
   bottom: 2rem;
   right: 3rem;
 
-  @media ${device.md} {
-    padding: 2rem 4rem;
-    font-size: 2rem;
-    right: 50%;
-    position: fixed;
-    bottom: 40rem;
+  @media ${device.lgPhones} {
+    position: static;
+    font-size: 1rem;
+    background-color: #f9fafb;
+    height: 3rem;
+    width: 20rem;
+    border: 1px solid #d4d4d4;
+    border-radius: 1rem;
 
-    transform: translate(50%, 0);
+    color: #18181b;
+    font-weight: 500;
   }
+
+  @media ${device.md} {
+    position: static;
+    font-size: 3rem;
+    background-color: #f9fafb;
+    height: 7rem;
+    width: 45rem;
+    border: 1px solid #d4d4d4;
+    border-radius: 1rem;
+
+    color: #18181b;
+    font-weight: 500;
+  }
+
+  @media ${device.md} and (orientation: landscape) {
+    height: 3rem;
+    width: 20rem;
+    font-size: 1rem;
+  }
+
   @media ${device.sm} {
-    position: fixed;
-    bottom: 40rem;
-    right: 50%;
-    transform: translateX(50%);
-    transform: translateY(50%);
+    width: 25rem;
+    font-size: 2rem;
   }
   @media ${device.xs} {
-    position: fixed;
-    bottom: 10rem;
-    right: 50%;
-    transform: translateX(50%);
+    height: 5rem;
+    width: 25rem;
+    font-size: 1.5rem;
   }
 `;
 
@@ -230,13 +344,11 @@ function Game() {
     );
   }
 
-  // if (isLoading || !questions || !answers || !answers[0]) {
   if (
     (isLoading && !errorWhenFetching) ||
     !questions.length ||
     !answers.length
   ) {
-    // if (isLoading && !errorWhenFetching) {
     return (
       <StyledGameContainer>
         <Spinner />
@@ -278,7 +390,7 @@ function Game() {
       {isSubbmited == true && (
         <StyledNextButton onClick={() => handleNextClick()}>
           Next
-          <IconContext.Provider value={{ color: "#71717a", size: "2rem" }}>
+          <IconContext.Provider value={{ className: "Icon-Game" }}>
             <FaLongArrowAltRight />
           </IconContext.Provider>
         </StyledNextButton>

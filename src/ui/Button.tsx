@@ -22,12 +22,12 @@ const StyledButton = styled.button`
 
   cursor: pointer;
 
-  @media ${device.xs} {
+  @media ${device.sm} {
+    position: fixed;
     font-size: 1.4rem;
     padding: 0.8rem 1.6rem;
-
-    top: 1rem;
-    left: 1rem;
+    top: 2rem;
+    left: 2rem;
   }
 `;
 

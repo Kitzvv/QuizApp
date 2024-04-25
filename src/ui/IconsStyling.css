@@ -1,0 +1,33 @@
+.Icon {
+  color: #71717a;
+
+  font-size: 7rem;
+
+  @media (max-width: 60rem) and (orientation: landscape) {
+    font-size: 4rem;
+  }
+
+  @media (max-width: 56rem) {
+    font-size: 7rem;
+  }
+
+  @media (max-width: 41rem) {
+    font-size: 6rem;
+  }
+  @media (max-width: 25rem) {
+    font-size: 4rem;
+  }
+}
+
+.Icon-Game {
+  color: #71717a;
+
+  font-size: 3rem;
+
+  @media (max-width: 56rem) {
+    font-size: 4rem;
+  }
+  @media (max-width: 56rem) and (orientation: landscape) {
+    font-size: 3rem;
+  }
+}

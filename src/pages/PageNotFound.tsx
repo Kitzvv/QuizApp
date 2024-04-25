@@ -12,9 +12,22 @@ const StyledPageNotFoundContainer = styled.div`
   justify-content: space-evenly;
 
   @media ${device.lgPhones} {
+    gap: 0rem;
     justify-content: start;
   }
+
   @media ${device.md} {
+    gap: 10rem;
+    justify-content: center;
+  }
+
+  @media ${device.md} and (orientation: landscape) {
+    gap: 0rem;
+    justify-content: start;
+  }
+
+  @media ${device.sm} {
+    gap: 5rem;
     justify-content: start;
   }
 `;
@@ -29,8 +42,25 @@ const StyledH1 = styled.h1`
   align-items: center;
   gap: 2rem;
 
-  @media ${device.md} and (orientation: landscape) {
+  @media ${device.lgPhones} {
+    gap: 1rem;
     font-size: 3rem;
+  }
+
+  @media ${device.md} {
+    font-size: 5rem;
+  }
+
+  @media ${device.md} and (orientation: landscape) {
+    gap: 1rem;
+    font-size: 3rem;
+  }
+  @media ${device.sm} {
+    padding: 2rem;
+    font-size: 3rem;
+  }
+  @media ${device.xs} {
+    padding: 1rem;
   }
 `;
 
@@ -39,8 +69,27 @@ const StyledErrorText = styled.p`
   text-align: center;
   color: #71717a;
 
+  @media ${device.lgPhones} {
+    padding: 2rem;
+    font-size: 1.8rem;
+  }
+
+  @media ${device.md} {
+    padding: 4rem;
+    font-size: 3rem;
+  }
+
   @media ${device.md} and (orientation: landscape) {
+    padding: 2rem;
+    font-size: 1.8rem;
+  }
+
+  @media ${device.sm} {
+    padding: 1rem;
     font-size: 2rem;
+  }
+  @media ${device.xs} {
+    padding: 2rem;
   }
 `;
 
@@ -53,6 +102,20 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+
+  @media ${device.md} {
+    padding: 2rem 4rem;
+    font-size: 2rem;
+  }
+  @media ${device.md} and (orientation: landscape) {
+    padding: 0.7rem 1.2rem;
+    font-size: 2rem;
+  }
+
+  @media ${device.sm} {
+    padding: 2rem;
+    font-size: 2rem;
+  }
 `;
 
 function PageNotFound() {

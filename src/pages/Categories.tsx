@@ -8,6 +8,7 @@ import { IoIosGlobe } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { StyledLine } from "./Homepage";
 import { device } from "../breakpoints";
+import "../ui/IconsStyling.css";
 
 const StyledCategoriesContainer = styled.div`
   height: 100%;
@@ -15,10 +16,26 @@ const StyledCategoriesContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  gap: 2rem;
+  @media ${device.lgPhones} {
+    gap: 0.1rem;
+
+    justify-content: start;
+  }
+  @media ${device.md} {
+    gap: 12rem;
+  }
+
+  @media ${device.md} and (orientation: landscape) {
+    gap: 0rem;
+  }
+
+  @media ${device.sm} {
+    gap: 0rem;
+    justify-content: start;
+  }
 
   @media ${device.xs} {
-    overflow: scroll;
+    justify-content: start;
   }
 `;
 
@@ -32,6 +49,27 @@ const StyledH1 = styled.h1`
   flex-direction: column;
   align-items: center;
   gap: 1.2rem;
+
+  @media ${device.lgPhones} {
+    font-size: 2.5rem;
+    margin-top: 0rem;
+  }
+
+  @media ${device.md} and (orientation: landscape) {
+    font-size: 2.3rem;
+  }
+
+  @media ${device.sm} {
+    margin-top: 1rem;
+    gap: 1rem;
+    font-size: 3rem;
+  }
+
+  @media ${device.xs} {
+    margin-top: 0rem;
+    gap: 1rem;
+    font-size: 2.5rem;
+  }
 `;
 
 const FlexContainer = styled.div`
@@ -44,7 +82,7 @@ const StyledContainer = styled.div`
   border-radius: 2rem;
 
   height: 50rem;
-  width: 90%;
+  width: 100%;
 
   display: grid;
   justify-items: center;
@@ -54,34 +92,29 @@ const StyledContainer = styled.div`
   gap: 2rem;
   grid-template-columns: 1fr 1fr 1fr;
 
-  @media ${device.md} {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-    align-content: center;
-    height: 100%;
+  @media ${device.lgPhones} {
+    width: 100%;
+    padding: 1rem;
+    height: 25rem;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-row: repeat(2, 1fr);
   }
 
   @media ${device.md} and (orientation: landscape) {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-
-  @media ${device.xs} {
-    gap: 1rem;
-  }
-
-  @media ${device.lgPhones} {
-    overflow-y: scroll;
     height: 20rem;
+    gap: 0.5rem;
+  }
+
+  @media ${device.sm} {
+    height: 100%;
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
 const CategoryContainer = styled.div`
   border: 2px solid #d4d4d4;
-
+  height: 20rem;
   width: 100%;
 
   display: flex;
@@ -92,20 +125,19 @@ const CategoryContainer = styled.div`
 
   cursor: pointer;
 
+  @media ${device.lgPhones} {
+    height: 10rem;
+    width: 100%;
+    justify-content: center;
+  }
+
   @media ${device.md} and (orientation: landscape) {
-    max-height: 5rem;
+    height: 8rem;
+    width: 100%;
   }
 
   @media ${device.xs} {
-    overflow-y: auto;
-    align-content: center;
-    justify-content: center;
-    max-height: 15rem;
-    width: 15rem;
-  }
-
-  @media not ${device.xs} {
-    height: 20rem;
+    height: 13rem;
   }
 `;
 
@@ -115,12 +147,15 @@ const StyledCategoryName = styled.p`
   color: #71717a;
   text-align: center;
 
-  @media ${device.xs} {
-    font-size: 1.6rem;
+  @media ${device.lgPhones} {
+    font-size: 1.3rem;
   }
 
-  @media ${device.md} and (orientation: landscape) {
-    font-size: 1.6rem;
+  @media ${device.sm} {
+    font-size: 2rem;
+  }
+  @media ${device.xs} {
+    font-size: 1.5rem;
   }
 `;
 
@@ -157,7 +192,7 @@ function Categories() {
               key={category.id}
               onClick={() => handleCategoryClick(category.id)}
             >
-              <IconContext.Provider value={{ color: "#71717a", size: "6rem" }}>
+              <IconContext.Provider value={{ className: "Icon" }}>
                 {category.icon}
               </IconContext.Provider>
               <StyledCategoryName>{category.name}</StyledCategoryName>

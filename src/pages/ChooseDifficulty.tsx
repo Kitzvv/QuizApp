@@ -4,30 +4,74 @@ import { StyledLine } from "./Homepage";
 import { device } from "../breakpoints";
 
 const StyledContainer = styled.div`
-  height: 100;
+  height: 100%;
   width: 100%;
-
   display: flex;
   flex-direction: column;
 
-  gap: 2rem;
+  @media ${device.lgPhones} {
+    gap: 0rem;
+    justify-content: start;
+  }
 
-  overflow: auto;
+  @media ${device.md} {
+    gap: 10rem;
+    justify-content: start;
+  }
+  @media ${device.md} and (orientation: landscape) {
+    gap: 0;
+  }
+
+  @media ${device.sm} {
+    /* background-color: red; */
+    gap: 2rem;
+  }
+  @media ${device.xs} {
+    gap: 0rem;
+  }
+`;
+
+const StyledTextContainer = styled.div`
+  height: 15rem;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+
+  @media ${device.lgPhones} {
+    height: 10rem;
+    padding-top: 1rem;
+    gap: 0.5rem;
+    justify-content: start;
+  }
+
+  @media ${device.xs} {
+    height: 10rem;
+    padding-top: 1rem;
+  }
 `;
 
 const StyledH1 = styled.h1`
   color: #71717a;
   font-size: 4rem;
-  margin-top: 3rem;
+  text-align: center;
+
   font-weight: 600;
+  margin: 0;
 
-  margin-bottom: -1.5rem;
-`;
+  @media ${device.lgPhones} {
+    font-size: 2rem;
+  }
 
-const StyledTextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @media ${device.sm} {
+    font-size: 3rem;
+  }
+
+  @media ${device.xs} {
+    font-size: 2.5rem;
+  }
 `;
 
 const StyledCategoryName = styled.p`
@@ -35,10 +79,22 @@ const StyledCategoryName = styled.p`
   font-weight: 500;
   color: #71717a;
   text-transform: uppercase;
+  margin: 0;
+
+  @media ${device.lgPhones} {
+    font-size: 1.5rem;
+  }
+
+  @media ${device.sm} {
+    font-size: 2rem;
+  }
+  @media ${device.xs} {
+    font-size: 1.7rem;
+  }
 `;
 
 const LevelContainer = styled.div`
-  height: 100%;
+  height: 50rem;
   width: 100%;
 
   display: flex;
@@ -48,51 +104,30 @@ const LevelContainer = styled.div`
   padding: 5rem;
 
   @media ${device.lgPhones} {
-    /* background-color: red; */
-    justify-content: center;
-    overflow-y: scroll;
-    height: 20rem;
-    padding-top: 2rem;
-    /* height: 100vh; */
-  }
-
-  @media ${device.md} and (orientation: landscape) {
-    /* background: blue; */
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    height: 15rem;
   }
 
   @media ${device.md} {
-    /* background-color: red; */
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
+    justify-content: center;
     gap: 2rem;
-    overflow-y: auto;
+  }
+  @media ${device.md} and (orientation: landscape) {
   }
 
   @media ${device.sm} {
-    /* background-color: red; */
-    align-items: center;
-    justify-content: start;
-    gap: 2rem;
-    padding: 2rem;
-    height: 100%;
-
-    overflow: scroll;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  @media ${device.sm} {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3rem;
   }
   @media ${device.xs} {
-    /* background-color: red; */
-    align-items: center;
-    justify-content: start;
-    gap: 2rem;
-    padding: 2rem;
     height: 40rem;
-
-    overflow: scroll;
+    padding: 0rem;
+    gap: 1rem;
   }
 `;
 
@@ -110,26 +145,27 @@ const Level = styled.div`
   cursor: pointer;
 
   @media ${device.lgPhones} {
-    /* background-color: red; */
-    justify-content: center;
-    height: 100%;
-    padding-top: 2rem;
+    height: 15rem;
   }
 
   @media ${device.md} {
-    height: 10rem;
-    width: 10rem;
-    justify-content: space-around;
-
-    width: 100%;
+    padding: 2rem;
+    width: 20rem;
+    height: 45rem;
   }
   @media ${device.md} and (orientation: landscape) {
-    justify-content: center;
-    gap: 0rem;
+    height: 15rem;
+    gap: 4rem;
   }
+
   @media ${device.sm} {
+    height: 20rem;
+    width: 20rem;
+  }
+  @media ${device.xs} {
+    height: 13rem;
+    width: 13rem;
     gap: 0rem;
-    align-items: center;
   }
 `;
 
@@ -137,23 +173,25 @@ const StyledEmoji = styled.span`
   font-size: 7rem;
 
   @media ${device.lgPhones} {
+    height: 5rem;
+  }
+  @media ${device.md} and (orientation: landscape) {
+    height: 3rem;
+  }
+
+  @media ${device.sm} {
+    height: 6rem;
     font-size: 5rem;
   }
-  @media ${device.md} {
-    font-size: 3rem;
+  @media ${device.xs} {
+    height: 3rem;
+    font-size: 4rem;
   }
 `;
 
 const StyledDifficulty = styled.p`
   font-size: 2.4rem;
   color: #71717a;
-
-  @media ${device.lgPhones} {
-    font-size: 2rem;
-  }
-  @media ${device.sm} {
-    font-size: 2rem;
-  }
 `;
 
 function ChooseDifficulty() {

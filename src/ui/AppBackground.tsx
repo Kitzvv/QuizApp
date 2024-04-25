@@ -23,16 +23,18 @@ const StyledWaveTop = styled.div`
   top: 30%;
   position: absolute;
   background-image: url("/wave-1.svg");
-  background-size: cover;
+  /* background-size: cover; */
 
   @media ${device.xxl} {
     height: 30rem;
     top: 25%;
+    background-size: cover;
   }
 
   @media ${device.lg} {
+    background-size: contain;
     height: 30rem;
-    top: 40%;
+    top: 37%;
   }
 
   @media ${device.md} {
@@ -74,7 +76,7 @@ const StyledWaveMiddle = styled.div`
 
   @media ${device.md} {
     height: 15rem;
-    top: 50%;
+    top: 45%;
   }
 
   @media ${device.sm} {
@@ -112,7 +114,7 @@ const StyledMiddleBox = styled.div`
 
   @media ${device.md} {
     height: 35rem;
-    top: 65%;
+    top: 60%;
   }
 
   @media ${device.sm} {
