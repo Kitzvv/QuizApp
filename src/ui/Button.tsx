@@ -22,6 +22,10 @@ const StyledButton = styled.button`
 
   cursor: pointer;
 
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
   @media ${device.sm} {
     position: fixed;
     font-size: 1.4rem;

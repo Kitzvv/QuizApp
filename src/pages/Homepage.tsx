@@ -112,9 +112,13 @@ const StyledLink = styled(Link)`
   font-size: 1.6rem;
   border-radius: 10rem;
   font-weight: 500;
-  border: 1px solid #4f46e5;
+  border: 1px solid #71717a;
   color: #292524;
   text-decoration: none;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
 
   @media ${device.lgPhones} {
     font-size: 1.3rem;
@@ -163,10 +167,10 @@ function Homepage() {
         <StyledLine />
       </StyledH1>
       <StyledText>
-        Explore six diverse categories and various difficulty levels tailored to
-        your expertise. Embark on a trivia adventure today! Built with
-        TypeScript, React Router, Styled Components, and Redux, Quizzies offers
-        a seamless and immersive experience for all trivia enthusiasts.
+        Explore six various categories and difficulty levels based on your
+        skill. Built with TypeScript, React Router, Styled Components, and
+        Redux. Quizzies offers an easy to access and immersive experience for
+        all trivia enthusiasts.
       </StyledText>
       <StyledLink to="/categories">Get Started</StyledLink>
       <StyledFooterText>
