@@ -1,11 +1,19 @@
 import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
+import { device } from "../breakpoints";
 
 const StyledHeader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+
+  @media ${device.sm} {
+    display: none;
+  }
+  @media ${device.md} and (orientation: landscape) {
+    display: none;
+  }
 `;
 
 const StyledText = styled.p`

@@ -6,6 +6,7 @@ import AppBackground from "./AppBackground";
 
 const StyledAppLayout = styled.div`
   height: 100vh;
+  width: 100%;
   background-color: #eef2ff;
   position: relative;
 `;

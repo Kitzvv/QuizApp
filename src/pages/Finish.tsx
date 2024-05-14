@@ -20,6 +20,10 @@ const StyledFinishContainer = styled.div`
     justify-content: start;
   }
 
+  @media ${device.lg} and (orientation: portrait) {
+    font-size: 3rem;
+  }
+
   @media ${device.md} {
     gap: 10rem;
   }
@@ -49,6 +53,10 @@ const StyledH1 = styled.h1`
   @media ${device.lgPhones} {
     margin-top: 2rem;
     font-size: 3rem;
+  }
+
+  @media ${device.lg} and (orientation: portrait) {
+    font-size: 8rem;
   }
 
   @media ${device.md} {
@@ -93,6 +101,10 @@ const StyledH3 = styled.h3`
     margin-top: 0rem;
   }
 
+  @media ${device.lg} and (orientation: portrait) {
+    font-size: 4rem;
+  }
+
   @media ${device.md} {
     font-size: 4rem;
   }
@@ -113,6 +125,10 @@ const StyledText = styled.p`
   text-align: center;
   font-weight: 400;
 
+  @media ${device.lg} and (orientation: portrait) {
+    font-size: 4rem;
+  }
+
   @media ${device.md} {
     font-size: 2rem;
   }
@@ -121,19 +137,24 @@ const StyledText = styled.p`
 const StyledEndButton = styled.button`
   height: 5rem;
   width: 25rem;
-  color: #18181b;
+  color: #71717a;
+  font-weight: 500;
 
   background-color: #ffffff;
   border: 1px solid #71717a;
   padding: 1rem 2rem;
   font-size: 1.6rem;
   border-radius: 10rem;
-  font-weight: 300;
+
   cursor: pointer;
 
   @media ${device.lgPhones} {
     font-size: 2rem;
     height: 4rem;
+  }
+  @media ${device.lg} and (orientation: portrait) {
+    font-size: 4rem;
+    height: 10rem;
   }
 
   @media ${device.md} {

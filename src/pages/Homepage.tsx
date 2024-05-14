@@ -16,12 +16,11 @@ const StyledHomepageContainer = styled.main`
 
   @media ${device.lgPhones} {
     justify-content: start;
-    gap: 0rem;
+    gap: 3rem;
   }
 
-  @media ${device.md} {
-    justify-content: space-evenly;
-    gap: 2rem;
+  @media ${device.lg} and (orientation: portrait) {
+    gap: 10rem;
   }
 
   @media ${device.md} and (orientation: landscape) {
@@ -54,13 +53,15 @@ const StyledH1 = styled.h1`
     font-size: 3rem;
     margin-top: 0rem;
   }
+  @media ${device.lg} and (orientation: portrait) {
+    font-size: 5rem;
+  }
 
   @media ${device.md} {
     font-size: 5rem;
   }
   @media ${device.md} and (orientation: landscape) {
     font-size: 3rem;
-    margin-top: 0rem;
   }
 
   @media ${device.sm} {
@@ -68,6 +69,7 @@ const StyledH1 = styled.h1`
   }
 
   @media ${device.xs} {
+    margin-top: 4rem;
     font-size: 2.8rem;
   }
 `;
@@ -87,6 +89,10 @@ const StyledText = styled.p`
 
   @media ${device.lgPhones} {
     font-size: 1.8rem;
+  }
+
+  @media ${device.lg} and (orientation: portrait) {
+    font-size: 3rem;
   }
 
   @media ${device.md} {
@@ -125,6 +131,10 @@ const StyledLink = styled(Link)`
     padding: 1.5rem 3rem;
   }
 
+  @media ${device.lg} and (orientation: portrait) {
+    font-size: 3rem;
+  }
+
   @media ${device.md} {
     font-size: 3rem;
     margin-bottom: 6rem;
@@ -156,6 +166,26 @@ const StyledFooterText = styled.p`
     font-weight: 600;
     color: #18181b;
     text-decoration: none;
+  }
+
+  @media ${device.lgPhones} {
+    position: static;
+    font-size: 1rem;
+  }
+  @media ${device.lg} and (orientation: portrait) {
+    position: static;
+    font-size: 2rem;
+  }
+
+  @media ${device.md} {
+    position: static;
+    font-size: 1rem;
+  }
+  @media ${device.md} and (orientation: portrait) {
+    font-size: 2rem;
+  }
+  @media ${device.sm} {
+    font-size: 1.3rem;
   }
 `;
 

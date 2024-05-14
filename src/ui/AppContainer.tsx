@@ -11,14 +11,16 @@ const StyledAppContainer = styled.div`
   z-index: 50;
   position: relative;
 
-  @media ${device.md} {
+  @media ${device.lg} and (orientation: portrait) {
     height: 100dvh;
-    width: 100dvh;
+    width: 100%;
+    overflow: hidden;
   }
-  @media ${device.md} and (orientation: landscape) {
-    height: 100vh;
-    width: 100vw;
-  }
+
+  /* @media ${device.md} and (orientation: landscape) {
+    height: 100dvh;
+    width: 100%;
+  } */
 `;
 
 export default function AppContainer() {

@@ -107,7 +107,13 @@ const LevelContainer = styled.div`
     height: 15rem;
   }
 
+  @media ${device.lg} and (orientation: portrait) {
+    align-items: start;
+    gap: 2rem;
+  }
+
   @media ${device.md} {
+    align-items: center;
     justify-content: center;
     gap: 2rem;
   }
@@ -146,6 +152,10 @@ const Level = styled.div`
 
   @media ${device.lgPhones} {
     height: 15rem;
+  }
+
+  @media ${device.lg} and (orientation: portrait) {
+    height: 50rem;
   }
 
   @media ${device.md} {

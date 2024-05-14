@@ -21,6 +21,7 @@ const StyledCategoriesContainer = styled.div`
 
     justify-content: start;
   }
+
   @media ${device.md} {
     gap: 12rem;
   }
@@ -90,7 +91,7 @@ const StyledContainer = styled.div`
 
   padding: 2rem;
   gap: 2rem;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
 
   @media ${device.lgPhones} {
     width: 100%;
@@ -101,12 +102,17 @@ const StyledContainer = styled.div`
     grid-template-row: repeat(2, 1fr);
   }
 
+  @media ${device.lg} and (orientation: portrait) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   @media ${device.md} and (orientation: landscape) {
     height: 20rem;
     gap: 0.5rem;
   }
 
   @media ${device.sm} {
+    grid-template-columns: repeat(3, 1fr);
     height: 100%;
     grid-template-columns: 1fr 1fr;
   }

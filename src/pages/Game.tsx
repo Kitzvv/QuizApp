@@ -33,7 +33,7 @@ const StyledGameContainer = styled.div`
     gap: 1rem;
   }
 
-  @media ${device.md} {
+  @media ${device.lg} and (orientation: portrait) {
     padding: 4rem 8rem;
     justify-content: start;
     gap: 3rem;
@@ -79,6 +79,10 @@ const StyledAddonsText = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   color: #71717a;
+
+  @media ${device.lg} and (orientation: portrait) {
+    font-size: 3rem;
+  }
 
   @media ${device.md} {
     font-size: 2rem;
@@ -193,10 +197,11 @@ const StyledAnswers = styled.button`
     font-size: 1rem;
   }
 
-  @media ${device.md} {
+  @media ${device.lg} and (orientation: portrait) {
     height: 7rem;
     font-size: 3rem;
   }
+
   @media ${device.md} and (orientation: landscape) {
     height: 3rem;
     width: 20rem;
@@ -243,7 +248,7 @@ const StyledNextButton = styled.button`
     font-weight: 500;
   }
 
-  @media ${device.md} {
+  @media ${device.lg} and (orientation: portrait) {
     position: static;
     font-size: 3rem;
     background-color: #f9fafb;
