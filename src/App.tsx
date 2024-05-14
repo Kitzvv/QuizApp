@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import GlobalStyles from "./ui/GlobalStyles";
 import AppLayout from "./ui/AppLayout";
 
 import Homepage from "./pages/Homepage";
@@ -10,6 +9,7 @@ import Game from "./pages/Game";
 import Finish from "./pages/Finish";
 import PageNotFound from "./pages/PageNotFound";
 import { Navigate } from "react-router";
+import GlobalStyles from "./ui/GlobalStyles";
 
 function App() {
   return (
