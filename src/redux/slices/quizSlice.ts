@@ -48,7 +48,7 @@ type ApiDataType = {
   scienceandnature: number;
 };
 
-type AnswerType = {
+export type AnswerType = {
   text: string;
   correct: boolean;
 };

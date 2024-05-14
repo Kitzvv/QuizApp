@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {
+  AnswerType,
   fetchData,
   nextQuestion,
   startGame,
@@ -321,7 +322,7 @@ function Game() {
     }
   }, [category, difficulty, dispatch]);
 
-  function handleAnswerClick(answer: object) {
+  function handleAnswerClick(answer: AnswerType) {
     setIsSubmited(true);
     dispatch(submitQuestion(answer));
   }
